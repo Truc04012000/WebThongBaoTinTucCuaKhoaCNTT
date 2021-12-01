@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="html-student">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body class="w3-light-grey w3-content body-content student-html">
+  <!-- Sidebar/menu -->
+    <div class="page-header-topbar" >
+        <nav id="topbar" class="navbar1" >
+            <h3 style="text-align: center;">NOTIFICATION</h3>
+        </nav>
+    </div>
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left"  id="mySidebar"><br>
+    <div id="sidebar">
+        <div class="profile">
+            <figure class="student-profile">
+                <img src="/avatars/<%=locals.imgProfile%>" alt="">
+            </figure>
+            <p class="txt-username"><%=locals.txtUsername%></p><br>
+        </div>  
+        <div class="list">
+            <div class="item">
+                <a href="/department/changepassword"  class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right fa fa-home"></i>Change Password</a>
+            </div>
+            <div class="item">
+                <a href="/notifications"  class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right fa fa-home"></i>Create Notification</a>
+            </div>
+            <div class="item">
+                <a href="/phanloaithongbao"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Phân loại thông báo</a>
+            </div>
+            <div class="item">
+                <a href="/thongbaomoi"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw w3-margin-right"></i>Thông báo mới</a>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+  </nav >
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" id="myOverlay"></div>
+  <div id ="page-content" class="page-content w3-main" >
+    <div id="tab-general">
+        <div class="row">
+            <div class="col-md-7 col-xs-12"> 
+                <div class="portlet ">
+                    <!-- Thêm bài đăng--> 
+                    <div class="central-meta">
+                        <div class="new-postbox">
+                            <figure class="user-avt">
+                                <img src="/avatars/<%=locals.imgProfile%>" alt="">
+                            </figure>
+                            <div class="newpst-input">
+                                <form method="post" action="/department" enctype="multipart/form-data" name="add-posts" id="add-posts">
+                                    <textarea rows="2" id="description" name ="description" placeholder="What's on your mind,<%=locals.txtUsername%>?"></textarea>
+                                    <input id= "val" name="idYoutube" style="display: none;">
+                                    <div class="attachments">
+                                        <i class="fa fa-camera"></i>
+										<label class="fileContainer">
+                                            <input id="img" name="img" type="file"/>
+										</label>
+                                        <button type="submit" id="posts" class="btn-post btn-primary" value="upload">Post</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div >
+                    <% if((posts).length > 0) { %>
+                    <%  posts.forEach(post => {  %>
+                    <div class="central-meta">
+                            <!--Hiển thị nội dung  -->
+                        <div class="friend-info">
+                            <figure>
+                                <img class="info" src="/avatars/<%=post.imgAuthor%>" alt="">
+                            </figure>
+                            <div class="friend-name">
+                                <ins><a class="text-color" href="#" title=""><%=post.author%></a></ins>
+                                <span><%=post.dateCreated.toLocaleDateString()+' '+post.dateCreated.toLocaleTimeString()%></span>
+                                <div class="setting-post">
+                                    <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="description">	
+                                <p> <%=post.description%></p>
+                                <% if (post.imgPost > 0) { %>
+                                    <img class="img-show" src="/imageposts/<%=post.imgPost%>" alt="">
+                                <% } %>  
+                            </div>
+                            <% if (post.idYoutube !== null) { %>
+                                <div class="video">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=post.idYoutube%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>                              
+                            <% } %>
+                            <div class="row">
+                                <div class="col-sm-6" style="text-align: center;">
+                                    <a href="#" style=" font-size: large;">
+                                        <i class="fa fa-gittip"></i>
+                                        Like (1)
+                                    </a>
+                                </div>
+                                <div class="col-sm-6" style="text-align: center;">
+                                    <a href="#"  style=" font-size: large;">
+                                        <i class="fa fa-comment"></i>
+                                        Comment (2)
+                                    </a>
+                                </div> 
+                            </div>
+                            <!-- Comment -->
+                            <% if((post.comments).length > 0) { %>
+                            <% post.comments.forEach(comment => {  %>
+                            <div class="bg-white p-2">
+                                <div id="comment_frame">
+                                    <p>
+                                    <div class="d-flex flex-row align-items-start"
+                                        style=" font-size: 14px;  ">
+                                        <img class="rounded-circle" src="/avatars/<%=comment.img%>" width="32"height="32">    
+                                        <div style="border-radius: 12px; border: 2px solid #e6e7e9; background-color: #F2F3F5; padding: 1px 8px 1px 8px; margin: 2px 0 0 5px;">
+                                            <a href=""style="font-size: 15px;"><%=comment.content%></a>
+                                        <br>
+                                        <span><%=comment.timeComment.toLocaleDateString()+' '+comment.timeComment.toLocaleTimeString()%></span>
+                                        </div>
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <% });
+                                } %>
+                            <!-- Thêm comment -->
+                            <form id="commentForm" method="post" action="/student/comment">
+                                <div class="" >
+                                    <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="/avatars/<%=locals.imgProfile%>" width="35" height="35">
+                                        <div class="input-group comment-box ">
+                                            <input type="text" id ="id-post" name="idPost" value="<%=post._id%>"style="display: none;">
+                                            <input type="text" id="commentInput" name="content" class="form-control "placeholder="Write a comment...">
+                                            <button class="btn btn-primary btn-comment" type="submit" data-id="<%=post._id%>">Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <% });
+                    } %>
+                </div>               
+            </div>      
+            <div class="col-md-5 col-xs-12 notification-list">
+                <div class="portlet box prolet-primary">
+                    <div class="portlet-header head-tb-moi">
+                        <div class="caption text-uppercase">
+                            <h5>THÔNG BÁO MỚI</h5>
+                        </div>
+                        <form id="form_ChuaXem" method="post" action="/ThongBao/Filter">
+                            <input type="text" name="chk_chuaxem" id="chk_chuaxem" value="1" class="hidden">
+                            <a class="btn-xemtatca" id="XemTatCaTBChuaXem" style="float: right;">
+                                <u>Xem tất cả</u>
+                            </a>
+                        </form>
+                    </div>
+                    <% if((notification).length > 0) { %>
+                    <%  notification.forEach(noti => {  %>
+                    <div class="portlet-body div-tb-moi">
+                        <div class="chat-scroller">
+                            <ul class="chats">
+                                <li class="out">
+                                <div class="message">
+                                    <span class="chat-datetime"><%=noti.author+'-'+noti.timeCreated.toLocaleDateString()%></span>
+                                    <a class="tb-moi-click"">
+                                    <span class="chat-body tieu-de" title=""><%=noti.title%></span></a>
+                                    <span class="chat-body"><%=noti.description%></span>
+                                </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <br />
+                    <% });
+                    } %>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //Xu ly cat chuoi lay idYoutube
+    $('#add-posts').submit(function(e){
+        let link = "https://youtu.be/";
+        let data = $('#description').val();
+        let checkLink = data.includes(link);
+        let tmp = (checkLink === true) ? data.split(link) : 0;
+        let idYoutube = tmp[1];
+        $('#val').val(idYoutube);
+        // e.preventDefault()
+    });
+   
+    
+    // var formPosts = document.getElementById('add-posts')
+    // var dataform = new FormData();
+    // dataform.append('formPosts',formPosts);
+    // //Xu ly Ajax
+    // $.ajax({
+    //     url:'/student',
+    //     type: 'POST',
+    //     processData: false,
+    //     contentType: false,
+    //     data: dataform,
+    //     success: function (data) {
+    //         console.log(data)
+    //         if(data){
+    //             $(`div#${formPosts}`).html(data);
+    //         }else{
+    //             alert('Lỗi');
+    //         }
+    //     }
+    // })
+</script>
+</html>

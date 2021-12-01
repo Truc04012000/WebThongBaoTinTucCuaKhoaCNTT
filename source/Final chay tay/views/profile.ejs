@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/styles.css' />
+    <title>Profile</title>
+</head>
+<body>
+</div>   <!--body-->
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div id="content" class="content content-full-width">
+               <div class="profile">
+                    <div class="profile-header">
+                        <div class="profile-header-cover"></div>
+                            <div class="profile-header-content" style="text-align: center;">
+                                <div class="profile-header-img">
+                                    <img class="rounded-circle" src="/avatars/<%=imgAuthor%>">
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="name" style="text-align: center;">
+                            <h4 class="m-t-10 m-b-5">
+                                <%=author%>
+                            </h4>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            <h6>Danh sách bài đăng</h6>
+            <% if((profileUserPosts).length > 0) { %>
+            <%  profileUserPosts.forEach(profileUserPosts => {  %>
+            <div class="central-meta">
+                <!--Hiển thị nội dung  -->
+                <div class="friend-info">
+                    <figure>
+                        <img class="info" src="/avatars/<%=profileUserPosts.imgAuthor%>" alt="">
+                    </figure>
+                    <div class="friend-name">
+                        <ins><a><%=profileUserPosts.author%></a></ins>
+                        <span><%=profileUserPosts.dateCreated.toLocaleDateString()+' '+profileUserPosts.dateCreated.toLocaleTimeString()%></span>
+                        <div class="setting-post">
+                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="description">	
+                        <p> <%=profileUserPosts.description%></p>
+                        <% if (profileUserPosts.imgPost > 0) { %>
+                            <img class="img-show" src="/imageposts/<%=profileUserPosts.imgPost%>" alt="">
+                        <% } %>  
+                    </div>
+                    <% if (profileUserPosts.idYoutube !== null) { %>
+                        <div class="video">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=profileUserPosts.idYoutube%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>                              
+                    <% } %>
+                    <div class="row">
+                        <div class="col-sm-6" style="text-align: center;">
+                            <a href="#" style=" font-size: large;">
+                                <i class="fa fa-gittip"></i>
+                                Like
+                            </a>
+                        </div>
+                        <div class="col-sm-6" style="text-align: center;">
+                            <a href="#"  style=" font-size: large;">
+                                <i class="fa fa-comment"></i>
+                                Comment
+                            </a>
+                        </div> 
+                    </div>
+                    <!-- Comment -->
+                    <% if((profileUserPosts.comments).length > 0) { %>
+                    <% profileUserPosts.comments.forEach(cmt => {  %>
+                    <div class="bg-white p-2">
+                        <div id="comment_frame">
+                            <p>
+                            <div class="d-flex flex-row align-items-start"
+                                style=" font-size: 14px;  ">
+                                <img class="rounded-circle" src="/avatars/<%=cmt.img%>" width="32"height="32">    
+                                <div class="contentCmt">
+                                    <a href=""style="font-size: 15px;"><%=cmt.content%></a>
+                                <br>
+                                <span><%=cmt.timeComment.toLocaleDateString()+' '+cmt.timeComment.toLocaleTimeString()%></span>
+                                </div>
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                    <% });
+                    } %>
+                </div>
+            </div>
+            <% });
+            } %>
+        </div>
+   </div>
+</body>
+</html>

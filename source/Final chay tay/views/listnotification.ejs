@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="html-student">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body class="w3-light-grey w3-content body-content student-html">
+  <!-- Sidebar/menu -->
+    <div class="page-header-topbar" >
+        <nav id="topbar" class="navbar1" >
+            <h3 style="text-align: center;">NOTIFICATION</h3>
+        </nav>
+    </div>
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left"  id="mySidebar"><br>
+        <div id="sidebar">
+            <div class="profile">
+                <figure class="student-profile">
+                    <img src="/avatars/<%=locals.picture%>" alt="">
+                </figure>
+                <p class="txt-username"><%=locals.username%></p><br>
+            </div>  
+            <div class="list">
+            <div class="item">
+                <a href="/index"  class="w3-bar-item w3-button w3-padding"><i class="fa-fw w3-margin-right fa fa-home"></i>Trang chủ</a>
+            </div>
+            <div class="item">
+                <a href="/phanloaithongbao"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Phân loại thông báo</a>
+            </div>
+            <div class="item">
+                <a href="/thongbaomoi"  class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw w3-margin-right"></i>Thông báo mới</a>
+            </div>
+            </div>
+        </div>
+    <!--  -->
+    </nav >
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" id="myOverlay"></div>
+    <div id ="page-content" class="page-content w3-main" >
+    <div id="tab-general">
+        <div class="col-md-3 selectnoti">
+            <form method="POST">
+                <label>Hiển thị thông báo:</label><br>
+                <select>
+                    <option name ="roleNotification" type="checkbox" value="Phong CTHSSV" >Phòng CTHSSV </option>
+                    <option name ="roleNotification" type="checkbox" value="Phong Dai Hoc" >Phòng Đại học</option>
+                    <option name ="roleNotification" type="checkbox" value="Phong Sau dai hoc" >Phòng Sau đại học</option>
+                    <option name ="roleNotification" type="checkbox" value="Phong dien toan va may tinh"> Phòng điện toán và máy tính</option>
+                    <option name ="roleNotification" type="checkbox" value="Phong khao thi va kiem dinh chat luong" >Phòng khảo thí và kiểm định chất lượng</option>
+                    <option name ="roleNotification" type="checkbox" value="Phong tai chinh" >Phòng tài chính</option>
+                    <option name ="roleNotification" type="checkbox" value="TDT Creative Language Center" >TDT Creative Language Center</option>
+                    <option name ="roleNotification" type="checkbox" value="Trung tam tin hoc" >Trung tâm tin học</option>
+                    <option name ="roleNotification" type="checkbox" value="Trung tam SDT" >Trung tâm SDTC</option>
+                    <option name ="roleNotification" type="checkbox" value="Trung tam ATEM" >Trung tâm ATEM</option>
+                    <option name ="roleNotification" type="checkbox" value="Trung tam hop tac doanh nghiep va cuu sinh vien" >Trung tâm hợp tác doanh nghiệp và cựu sinh viên</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa luat" >Khoa Luật</option>
+                    <option name ="roleNotification" type="checkbox" value="Trung tam ngoai ngu" >Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</option>
+                    <option name ="roleNotification" type="checkbox" value="Vien chinh sach kinh te va kinh doanh" >Viện chính sách kinh tế và kinh doanh</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa MTCN" >Khoa Mỹ thuật công nghiệp</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa Dien-Dien Tu">Khoa Điện – Điện tử</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa CNTT" >Khoa Công nghệ thông tin </option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa QTKD" >Khoa Quản trị kinh doanh</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa MTBHLD" >Khoa Môi trường và bảo hộ lao động</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa LDCD" >Khoa Lao động công đoàn</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa TCNH" >Khoa Tài chính ngân hàng</option>
+                    <option name ="roleNotification" type="checkbox" value="Khoa GDQT">Khoa giáo dục quốc tế</option>
+                </select>
+                <input type="submit" class="btn btn-success">
+              </form>
+        </div>
+        <div class="row mbl">
+            <div class="col-md-10 col-xs-12">
+              <div class="portlet ">
+                <div class="">
+                  <div class="thong-bao-khan">
+                    <h5>DANH SACH THONG BAO</h5>
+                  </div>
+                </div>
+                <div style="overflow: hidden;" class="portlet-body">
+                    <ul class="todo-list" style="height:auto ; max-height:789px;">
+                        <% if((noti).length > 0) { %>
+                        <%  noti.forEach(noti => {  %>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click">
+                                <div class="todo-title" >
+                                    <p for=""><%=noti.title%></p>                                                     
+                                    <br />
+                                    <span class="chat-datetime"><%=noti.author+'Time:'+noti.timeCreated.toLocaleDateString()%></span>
+                                </div>
+                            </a>
+                        </li>
+                        <% });
+                        } %>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+
+                                </div>
+                            </a>
+                        </li>
+                        <li class="clearfix li-tb-khan">
+                            <a class="tb-khan tb-khan-click" onclick="openInNewTab('/ThongBao/Detail/135806')" data-id="135806" data-donvi="P09">
+                                <div class="todo-title" >
+                                    <p for="">THÔNG BÁO CHÍNH THỨC</p>                                                     
+                                    <br />
+                                    <span class="chat-datetime">[Phòng Đại Học] Thời gian- 23/04/2021</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex">
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <div class="bar"></div>
+        </ul>
+      </div>
+</body>
+<script type="text/javascript">
+</script>
+</html>

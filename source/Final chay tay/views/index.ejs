@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/styles.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Tạo thông báo</title>
+</head>
+
+<body class="index" class="w3-light-grey w3-content" style=" max-width: 1600px;">
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style=" z-index: 3;width: 300px;"><br>
+        <div class="w3-container">
+            <h4><b>Thông báo</b></h4>
+        </div>
+        <div class="w3-bar-block">
+            <a href="/notifications" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa-fw w3-margin-right fa fa-home"></i>Trang chủ</a>
+            <a href="/phanloaithongbao" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-th-large fa-fw w3-margin-right"></i>Phân loại thông báo</a>
+            <a href="/notifications" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw w3-margin-right"></i>Thông báo mới</a>
+        </div>
+    </nav>
+    <div class="indexpage" class="w3-overlay w3-hide-large w3-animate-opacity" title="close side menu"></div>
+    <div class="indexpage1" class="w3-main">
+        <div class="container">
+            <div class="m-4 text-center">
+                <h1 class="text-black">THÔNG BÁO</h1>
+            </div>
+            <div class="row mb-3">
+                <a href="notifications/new" class="btn btn-success d-flex align-items-center"><i class="material-icons mr-2">add_circle</i>Thêm mới</a>
+            </div>
+            <div class="row">
+                <% if(notifications.length<1){%>
+                    <%  } %>
+                        <% notifications.forEach(blog=>{ %>
+                            <div class="col-lg-6 card mt-2 mr-0">
+                                <div class="row p-2">
+                                    <div class="col-5 overflow-hidden">
+                                        <img src="/images/<%= blog.img %>" class="card-img" alt="...">
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="d-flex align-items-start">
+                                            <h5 class="w-100"><b> <%= blog.title %> </b></h5>
+                                            <div class="more position-relative" style="cursor: pointer;">
+                                                <i class="material-icons p-2">more_vert</i>
+                                                <div class="d-none options card rounded-pill shadow-sm p-1 position-absolute">
+                                                    <a href="notifications/edit/<%= blog.id %>" class="rounded-circle p-2 mb-2" style="background:blue;">
+                                                        <i class="material-icons" style="color:white">create</i>
+                                                    </a>
+                                                    <form action="/notifications/delete/<%=blog.id%>" method="POST">
+                                                        <button class="rounded-circle p-2 bg-danger">
+                                                            <i class="material-icons" style="color:white">delete</i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="align-self-stretch "> <%= blog.snippet %></span>
+                                        <div class="d-flex align-items-end">
+                                            <div class=" flex-grow-1">
+                                                <h5 class="classh5">
+                                                    <span><b><%= blog.author%></b><p class="classp">
+                                                        <%= blog.timeCreated.toLocaleDateString() %>
+                                                    </p></span>
+                                                </h5>
+                                                <span class="dr"> Chi tiết: 
+                                                    <%= blog.description %>
+                                                </span>
+                                            </div>
+                                            <a href="notifications/<%=blog.slug %> " class="align-self-end">
+                                                <i class='material-icons ml-3 text-black'>send</i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+            </div>
+            <script src="/javascripts/main.js"></script>
+        </div>
+        <br>
+</body>
+
+</html>

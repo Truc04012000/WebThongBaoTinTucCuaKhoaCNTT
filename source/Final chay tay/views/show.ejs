@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+    <link rel='stylesheet' href='/stylesheets/styles.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Thông báo mới</title>
+</head>
+
+<body class="show" class="w3-light-grey w3-content" style="max-width:1600px">
+    <div class="showpage" class="w3-overlay w3-hide-large w3-animate-opacity" title="close side menu"></div>
+    <div class="showpage1" class="w3-main">
+        <div class="container p-5">
+            <div class="m-4 text-center">
+                <h1 class="text-black">Thông báo mới</h1>
+            </div>
+            <div class="col-lg-6 card mt-2 mr-0">
+                <div class="row p-2">
+                    <!--  -->
+                    <div class="col-2">
+                        <a href="/notifications" class="rounded-pill shadow p-2 d-flex align-items-center justify-content-center" style="text-decoration:none;">
+                            <span style="color:black">Back</span>
+                        </a>
+                    </div>
+
+                    <div class="col-7">
+                        <div class="d-flex align-items-start">
+                            <h5 class="w-100"><b> <%= blog.title %> </b></h5>
+
+                            <div class="more position-relative" style="cursor: pointer;">
+                                <i class="material-icons p-2">more_vert</i>
+                                <div class="d-none card rounded-lg shadow-sm p-1 position-absolute" style="z-index: 9000;">
+                                    <a href="/notifications/edit/<%= blog.id %>" class="rounded-pill p-2 mb-2 d-flex align-items-center" style="background:blue;">
+                                        <i class="material-icons" style="color:white">create</i>
+
+                                    </a>
+                                    <form action="/notifications/delete/<%=blog.id%>" method="POST">
+                                        <button class="rounded-circle p-2 bg-danger">
+                                            <i class="material-icons" style="color:white">delete</i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-9 overflow-hidden">
+                                <img src="/images/<%= blog.img %>" class="card-img" alt="...">
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end mt-3">
+                            <div class="mr-2">
+                                <img src="/images/<%= blog.img %>" class="rounded-circle">
+                            </div>
+                            <div class=" flex-grow-1">
+                                <h5 class="classh5">
+                                    <span><b><%= blog.author%></b></span>
+                                </h5>
+                                <p class="classa">
+                                    <%= blog.timeCreated.toLocaleDateString() %>
+                                </p>
+                            </div>
+                            <div class="card-text">
+                                <p>
+                                    <%= blog.description %>
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/javascripts/main.js"></script>
+</body>
+
+</html>

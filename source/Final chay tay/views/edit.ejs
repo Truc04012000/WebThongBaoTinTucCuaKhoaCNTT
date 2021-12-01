@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel='stylesheet' href='/stylesheets/styles.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Chỉnh sửa thông báo</title>
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" title="close side menu"></div>
+    <div class="w3-main">
+        <div class="container ">
+            <div class="m-4 text-center">
+                <h1 class="text-black">Chỉnh sửa
+                    <%= blog.title %>
+                </h1>
+            </div>
+
+            <form action="/notifications/update/<%= blog.id %>" method="POST">
+                <div class="form-group">
+                    <label for="title" class="text-black">Tiêu đề</label>
+                    <input type="text" class="form-control" placeholder="Tiêu đề" name="title" value="<%= blog.title %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="author" class="text-black">Khoa</label>
+                    <input type="text" class="form-control" placeholder="Khoa" name="author" value="<%= blog.author %>" value="<%= blog.author %>">
+                </div>
+                <div class="form-group">
+                    <label for="description" class="text-black">Chi tiết</label>
+                    <textarea name="description" placeholder="Chi tiết" class="form-control"><%= blog.description %></textarea>
+                </div>
+                <div class="form-group">
+                    <a href="/notifications" class="btn btn-warning">Hủy</a>
+                    <button href="/notifications" type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
